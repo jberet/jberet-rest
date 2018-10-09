@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Red Hat, Inc. and/or its affiliates.
+ * Copyright (c) 2015-2018 Red Hat, Inc. and/or its affiliates.
  *
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
@@ -187,10 +187,20 @@ public class JobExecutionResource {
         return jobExecutionEntity;
     }
 
+    /**
+     * Schedules an restart of the job execution indicated by {@code jobExecutionId}, with the specified
+     * job schedule configuration.
+     * @param jobExecutionId the job execution (previously failed or stopped) to restart
+     * @param scheduleConfig the job schedule configuration
+     * @return a {@code org.jberet.schedule.JobSchedule} instance
+     */
     @Path("{jobExecutionId}/schedule")
     @POST
-    public JobSchedule schedule(final JobScheduleConfig scheduleConfig) {
+    public JobSchedule schedule(final @PathParam("jobExecutionId") long jobExecutionId, final JobScheduleConfig scheduleConfig) {
         final JobScheduler jobScheduler = JobScheduler.getJobScheduler();
+        if (scheduleConfig.getJobExecutionId() == 0) {
+            scheduleConfig.setJobExecutionId(jobExecutionId);
+        }
         return jobScheduler.schedule(scheduleConfig);
     }
 

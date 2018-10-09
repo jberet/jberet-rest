@@ -104,10 +104,21 @@ public class JobResource {
         return Response.created(jobExecutionDataUri).entity(jobExecutionData).build();
     }
 
+    /**
+     * Schedules an execution of the job indicated by {@code jobXmlName}, with the specified
+     * job schedule configuration.
+     *
+     * @param jobXmlName the name of the job to schedule execution
+     * @param scheduleConfig the job schedule configuration
+     * @return a {@code org.jberet.schedule.JobSchedule} instance
+     */
     @Path("{jobXmlName}/schedule")
     @POST
-    public JobSchedule schedule(final JobScheduleConfig scheduleConfig) {
+    public JobSchedule schedule(final @PathParam("jobXmlName") String jobXmlName, final JobScheduleConfig scheduleConfig) {
         final JobScheduler jobScheduler = JobScheduler.getJobScheduler();
+        if (scheduleConfig.getJobName() == null) {
+            scheduleConfig.setJobName(jobXmlName);
+        }
         return jobScheduler.schedule(scheduleConfig);
     }
 
