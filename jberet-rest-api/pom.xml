@@ -25,7 +25,7 @@
 
     <properties>
         <version.miredot>2.1.2</version.miredot>
-        <version.org.jberet.jberet-schedule>1.4.0.Final</version.org.jberet.jberet-schedule>
+        <version.org.jberet.jberet-schedule>1.4.1.Final</version.org.jberet.jberet-schedule>
     </properties>
 
     <dependencies>
