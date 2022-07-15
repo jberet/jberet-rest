@@ -28,10 +28,20 @@
     <properties>
         <version.org.jberet>1.4.7.Final</version.org.jberet>
         <insecure.repositories>WARN</insecure.repositories>
+        <version.org.jboss.spec.javax.xml.bind.jboss-jaxb-api_2.3_spec>2.0.1.Final</version.org.jboss.spec.javax.xml.bind.jboss-jaxb-api_2.3_spec>
     </properties>
 
     <modules>
         <module>jberet-rest-commons</module>
         <module>jberet-rest-api</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jboss.spec.javax.xml.bind</groupId>
+            <artifactId>jboss-jaxb-api_2.3_spec</artifactId>
+            <version>${version.org.jboss.spec.javax.xml.bind.jboss-jaxb-api_2.3_spec}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>
