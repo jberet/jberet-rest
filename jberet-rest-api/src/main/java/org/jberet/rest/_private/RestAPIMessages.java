@@ -10,8 +10,8 @@
 
 package org.jberet.rest._private;
 
-import javax.ws.rs.BadRequestException;
-import javax.ws.rs.NotFoundException;
+import jakarta.ws.rs.BadRequestException;
+import jakarta.ws.rs.NotFoundException;
 
 import org.jboss.logging.Messages;
 import org.jboss.logging.annotations.Message;

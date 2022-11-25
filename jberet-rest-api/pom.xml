@@ -18,20 +18,20 @@
     <parent>
         <artifactId>jberet-rest</artifactId>
         <groupId>org.jberet</groupId>
-        <version>1.4.2.Final-SNAPSHOT</version>
+        <version>2.0.0.Final-SNAPSHOT</version>
     </parent>
 
     <artifactId>jberet-rest-api</artifactId>
 
     <properties>
         <version.miredot>2.1.2</version.miredot>
-        <version.org.jberet.jberet-schedule>1.4.1.Final</version.org.jberet.jberet-schedule>
+        <version.org.jberet.jberet-schedule>2.0.0.Final</version.org.jberet.jberet-schedule>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.jboss.spec.javax.ws.rs</groupId>
-            <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jberet</groupId>
