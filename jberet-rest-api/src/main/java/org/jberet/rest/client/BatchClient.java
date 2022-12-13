@@ -48,10 +48,10 @@ public class BatchClient {
     }
 
     /**
-     * Constructs {@code BatchClient} with the specified {@code javax.ws.rs.client.Client}
+     * Constructs {@code BatchClient} with the specified {@code jakarta.ws.rs.client.Client}
      * and REST URL.
      *
-     * @param client {@code javax.ws.rs.client.Client}
+     * @param client {@code jakarta.ws.rs.client.Client}
      * @param restUrl REST URL, for example, http://localhost:8080/app1/api
      */
     public BatchClient(final Client client, final String restUrl) {
@@ -60,8 +60,8 @@ public class BatchClient {
     }
 
     /**
-     * Gets the {@code javax.ws.rs.client.Client} associated with this {@code BatchClient}.
-     * @return the {@code javax.ws.rs.client.Client}
+     * Gets the {@code jakarta.ws.rs.client.Client} associated with this {@code BatchClient}.
+     * @return the {@code jakarta.ws.rs.client.Client}
      */
     public Client getClient() {
         return client;
@@ -194,22 +194,22 @@ public class BatchClient {
     }
 
     /**
-     * Gets the {@code javax.ws.rs.client.WebTarget} for the specified URI.
+     * Gets the {@code jakarta.ws.rs.client.WebTarget} for the specified URI.
      *
      * @param uri uri
-     * @return {@code javax.ws.rs.client.WebTarget} for the uri
+     * @return {@code jakarta.ws.rs.client.WebTarget} for the uri
      */
     public WebTarget target(final URI uri) {
         return client.target(uri);
     }
 
     /**
-     * Gets the {@code javax.ws.rs.client.WebTarget} for the specified URI and
+     * Gets the {@code jakarta.ws.rs.client.WebTarget} for the specified URI and
      * query parameters.
      *
      * @param uri uri
      * @param props query parameters
-     * @return {@code javax.ws.rs.client.WebTarget}
+     * @return {@code jakarta.ws.rs.client.WebTarget}
      */
     public WebTarget target(final URI uri, final Properties props) {
         WebTarget result = client.target(uri);
@@ -323,12 +323,12 @@ public class BatchClient {
     }
 
     /**
-     * Gets the {@code javax.ws.rs.core.UriBuilder} for the specified
+     * Gets the {@code jakarta.ws.rs.core.UriBuilder} for the specified
      * REST resource class and method.
      *
      * @param cls REST resource class name
      * @param methodName name of the resource method in the above REST resource class
-     * @return {@code javax.ws.rs.core.UriBuilder}
+     * @return {@code jakarta.ws.rs.core.UriBuilder}
      */
     public UriBuilder getUriBuilder(final Class<?> cls, final String methodName) {
         UriBuilder uriBuilder = UriBuilder.fromPath(restUrl).path(cls);
@@ -339,44 +339,44 @@ public class BatchClient {
     }
 
     /**
-     * Gets the {@code javax.ws.rs.core.UriBuilder} for the specified method
+     * Gets the {@code jakarta.ws.rs.core.UriBuilder} for the specified method
      * name in {@link JobResource} class.
      *
      * @param methodName method name in {@code JobResource} class
-     * @return {@code javax.ws.rs.core.UriBuilder}
+     * @return {@code jakarta.ws.rs.core.UriBuilder}
      */
     public UriBuilder getJobUriBuilder(final String methodName) {
         return getUriBuilder(JobResource.class, methodName);
     }
 
     /**
-     * Gets the {@code javax.ws.rs.core.UriBuilder} for the specified method
+     * Gets the {@code jakarta.ws.rs.core.UriBuilder} for the specified method
      * name in {@link JobInstanceResource} class.
      *
      * @param methodName method name in {@code JobInstanceResource} class
-     * @return {@code javax.ws.rs.core.UriBuilder}
+     * @return {@code jakarta.ws.rs.core.UriBuilder}
      */
     public UriBuilder getJobInstanceUriBuilder(final String methodName) {
         return getUriBuilder(JobInstanceResource.class, methodName);
     }
 
     /**
-     * Gets the {@code javax.ws.rs.core.UriBuilder} for the specified method
+     * Gets the {@code jakarta.ws.rs.core.UriBuilder} for the specified method
      * name in {@link JobExecutionResource} class.
      *
      * @param methodName method name in {@code JobExecutionResource} class
-     * @return {@code javax.ws.rs.core.UriBuilder}
+     * @return {@code jakarta.ws.rs.core.UriBuilder}
      */
     public UriBuilder getJobExecutionUriBuilder(final String methodName) {
         return getUriBuilder(JobExecutionResource.class, methodName);
     }
 
     /**
-     * Gets the {@code javax.ws.rs.core.UriBuilder} for the specified method
+     * Gets the {@code jakarta.ws.rs.core.UriBuilder} for the specified method
      * name in {@link JobScheduleResource} class.
      *
      * @param methodName method name in {@code JobScheduleResource} class
-     * @return {@code javax.ws.rs.core.UriBuilder}
+     * @return {@code jakarta.ws.rs.core.UriBuilder}
      */
     public UriBuilder getJobScheduleUriBuilder(final String methodName) {
         return getUriBuilder(JobScheduleResource.class, methodName);
