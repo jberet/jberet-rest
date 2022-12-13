@@ -10,18 +10,18 @@
 
 package org.jberet.rest.exception;
 
-import javax.batch.operations.BatchRuntimeException;
-import javax.batch.operations.JobExecutionAlreadyCompleteException;
-import javax.batch.operations.JobExecutionIsRunningException;
-import javax.batch.operations.JobExecutionNotMostRecentException;
-import javax.batch.operations.JobExecutionNotRunningException;
-import javax.batch.operations.JobSecurityException;
-import javax.batch.operations.NoSuchJobException;
-import javax.batch.operations.NoSuchJobExecutionException;
-import javax.batch.operations.NoSuchJobInstanceException;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
+import jakarta.batch.operations.BatchRuntimeException;
+import jakarta.batch.operations.JobExecutionAlreadyCompleteException;
+import jakarta.batch.operations.JobExecutionIsRunningException;
+import jakarta.batch.operations.JobExecutionNotMostRecentException;
+import jakarta.batch.operations.JobExecutionNotRunningException;
+import jakarta.batch.operations.JobSecurityException;
+import jakarta.batch.operations.NoSuchJobException;
+import jakarta.batch.operations.NoSuchJobExecutionException;
+import jakarta.batch.operations.NoSuchJobInstanceException;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.ExceptionMapper;
+import jakarta.ws.rs.ext.Provider;
 
 import org.jberet.rest._private.RestAPILogger;
 import org.jberet.rest.entity.BatchExceptionEntity;

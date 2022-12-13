@@ -10,7 +10,7 @@
 
 package org.jberet.rest.commons._private;
 
-import javax.batch.operations.BatchRuntimeException;
+import jakarta.batch.operations.BatchRuntimeException;
 
 import org.jboss.logging.Messages;
 import org.jboss.logging.annotations.Cause;
