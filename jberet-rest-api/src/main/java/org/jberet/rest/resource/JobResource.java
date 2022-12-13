@@ -55,10 +55,10 @@ public class JobResource {
      * the latter takes precedence.
      *
      * @param jobXmlName job xml name, which usually is the same as job id
-     * @param uriInfo {@code javax.ws.rs.core.UriInfo} that contains query parameters and other info
+     * @param uriInfo {@code jakarta.ws.rs.core.UriInfo} that contains query parameters and other info
      * @param jobParamsAsProps job parameters properties
      *
-     * @return {@code javax.ws.rs.core.Response}, which includes response status and newly
+     * @return {@code jakarta.ws.rs.core.Response}, which includes response status and newly
      * started job execution of type {@link JobExecutionEntity}
      */
     @Path("{jobXmlName}/start")
@@ -81,10 +81,10 @@ public class JobResource {
      * When extracting query parameters from {@code uriInfo}, only the first value of
      * each key is used.
      *
-     * @param uriInfo {@code javax.ws.rs.core.UriInfo} that contains query parameters and other info
+     * @param uriInfo {@code jakarta.ws.rs.core.UriInfo} that contains query parameters and other info
      * @param jobDefinition the job definition content
      *
-     * @return {@code javax.ws.rs.core.Response}, which includes response status and newly
+     * @return {@code jakarta.ws.rs.core.Response}, which includes response status and newly
      * started job execution of type {@link JobExecutionEntity}
      *
      * @since 1.3.0.Final
@@ -138,7 +138,7 @@ public class JobResource {
      * override any same-keyed job parameters.
      *
      * @param jobXmlName job name/id, whose most recent job execution will be restarted
-     * @param uriInfo {@code javax.ws.rs.core.UriInfo} that contains additional query parameters and other info
+     * @param uriInfo {@code jakarta.ws.rs.core.UriInfo} that contains additional query parameters and other info
      * @param jobParamsAsProps additional job parameters properties
      *
      * @return {@code org.jberet.rest.entity.JobExecutionEntity} for the new job execution
@@ -182,7 +182,7 @@ public class JobResource {
      * used. When a key exists in both query parameters and {@code props}, the latter
      * takes precedence.
      *
-     * @param uriInfo the {@code javax.ws.rs.core.UriInfo} to extract query parameters
+     * @param uriInfo the {@code jakarta.ws.rs.core.UriInfo} to extract query parameters
      * @param props the {@code java.util.Properties} object
      * @return a combined {@code java.util.Properties}
      */

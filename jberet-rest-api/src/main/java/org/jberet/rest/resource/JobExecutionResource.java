@@ -48,7 +48,7 @@ public class JobExecutionResource {
      * @param count the maximum number of matching job executions
      * @param jobInstanceId job instance id
      * @param jobExecutionId1 id of any job execution belonging to the target job instance
-     * @param uriInfo {@code javax.ws.rs.core.UriInfo}
+     * @param uriInfo {@code jakarta.ws.rs.core.UriInfo}
      *
      * @return job executions matching the job instance
      */
@@ -68,7 +68,7 @@ public class JobExecutionResource {
      * Gets the running job executions for a job name/id.
      *
      * @param jobName the job name/id
-     * @param uriInfo {@code javax.ws.rs.core.UriInfo}
+     * @param uriInfo {@code jakarta.ws.rs.core.UriInfo}
      * @return running job executions for {@code jobName}
      */
     @Path("running")
@@ -84,7 +84,7 @@ public class JobExecutionResource {
      * Gets the job execution by its id.
      *
      * @param jobExecutionId job execution id
-     * @param uriInfo {@code javax.ws.rs.core.UriInfo}
+     * @param uriInfo {@code jakarta.ws.rs.core.UriInfo}
      *
      * @return the job execution with {@code jobExecutionId}
      */
@@ -134,7 +134,7 @@ public class JobExecutionResource {
      * override any same-keyed job parameters.
      *
      * @param jobExecutionId a previous job execution id
-     * @param uriInfo {@code javax.ws.rs.core.UriInfo} including additional restart parameters and other info
+     * @param uriInfo {@code jakarta.ws.rs.core.UriInfo} including additional restart parameters and other info
      * @param jobParamsAsProps additional restart job parameters
      *
      * @return the new restart job execution
@@ -165,14 +165,14 @@ public class JobExecutionResource {
      * in the current invocation will complement and override any same-keyed job parameters.
      *
      * @param jobExecutionId a previous job execution id
-     * @param uriInfo {@code javax.ws.rs.core.UriInfo} including additional restart parameters and other info
+     * @param uriInfo {@code jakarta.ws.rs.core.UriInfo} including additional restart parameters and other info
      * @param jobDefinition JSON job definition content
      *
      * @return the new restart job execution
      *
-     * @see JobExecutionResource#restart(long, javax.ws.rs.core.UriInfo, java.util.Properties)
+     * @see JobExecutionResource#restart(long, jakarta.ws.rs.core.UriInfo, java.util.Properties)
      * @see JobResource#restart(String, UriInfo, Properties)
-     * @see JobResource#submit(javax.ws.rs.core.UriInfo, java.lang.String)
+     * @see JobResource#submit(jakarta.ws.rs.core.UriInfo, java.lang.String)
      *
      * @since 1.3.0.Final
      */
@@ -241,7 +241,7 @@ public class JobExecutionResource {
     /**
      * Sets the href field for each {@code org.jberet.rest.entity.JobExecutionEntity} passed in.
      *
-     * @param uriInfo {@code javax.ws.rs.core.UriInfo}
+     * @param uriInfo {@code jakarta.ws.rs.core.UriInfo}
      * @param entities 1 or more {@code org.jberet.rest.entity.JobExecutionEntity}
      */
     static void setJobExecutionEntityHref(final UriInfo uriInfo, final JobExecutionEntity... entities) {

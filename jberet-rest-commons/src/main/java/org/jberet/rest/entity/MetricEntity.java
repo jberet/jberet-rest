@@ -20,7 +20,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 /**
  * Represents a step execution metric, which includes metric type and metric value.
  *
- * @see javax.batch.runtime.Metric
+ * @see jakarta.batch.runtime.Metric
  *
  * @since 1.3.0
  */

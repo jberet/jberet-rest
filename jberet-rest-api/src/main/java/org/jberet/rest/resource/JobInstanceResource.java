@@ -47,7 +47,7 @@ public class JobInstanceResource {
      * @param count limit the number of job instances in the result
      * @param jobExecutionId the job execution id for which to get job instance
 
-     * @return {@code javax.ws.rs.core.Response} including response status, and
+     * @return {@code jakarta.ws.rs.core.Response} including response status, and
      * response entity ({@code org.jberet.rest.entity.JobInstanceEntity} for job execution id,
      * and {@code org.jberet.rest.entity.JobInstanceEntity[]} for job name/id.
      */
