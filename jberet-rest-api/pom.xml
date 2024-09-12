@@ -24,7 +24,7 @@
     <artifactId>jberet-rest-api</artifactId>
 
     <properties>
-        <version.miredot>2.4.3-Java11</version.miredot>
+        <version.miredot>2.4.4-Java11</version.miredot>
         <version.org.jberet.jberet-schedule>2.0.0.Final</version.org.jberet.jberet-schedule>
     </properties>
 
