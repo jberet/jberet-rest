@@ -29,11 +29,11 @@ import org.jberet.job.model.RefArtifact;
 import org.jberet.job.model.Split;
 import org.jberet.job.model.Step;
 import org.jberet.job.model.Transition;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.wildfly.common.Assert.assertFalse;
+
 
 /**
  * Tests to verify JSON job definition content is properly converted into
@@ -43,53 +43,62 @@ import static org.junit.Assert.assertNull;
  * @since 1.3.0.Final
  */
 public final class JsonJobMapperTest {
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void missingJobId() throws Exception {
-        String json = "{\n" +
-                "  \"job\": {\n" +
-                "    \"step\": {\n" +
-                "      \"id\": \"simple.step1\",\n" +
-                "      \"chunk\": {\n" +
-                "        \"reader\": { \"ref\": \"arrayItemReader\" },\n" +
-                "        \"writer\": { \"ref\": \"mockItemWriter\" }\n" +
-                "      }\n" +
-                "    }\n" +
-                "  }\n" +
-                "}";
-        final Job job = JsonJobMapper.toJob(json);
+        assertThrows(IllegalStateException.class, () -> {
+            String json = "{\n" +
+                    "  \"job\": {\n" +
+                    "    \"step\": {\n" +
+                    "      \"id\": \"simple.step1\",\n" +
+                    "      \"chunk\": {\n" +
+                    "        \"reader\": { \"ref\": \"arrayItemReader\" },\n" +
+                    "        \"writer\": { \"ref\": \"mockItemWriter\" }\n" +
+                    "      }\n" +
+                    "    }\n" +
+                    "  }\n" +
+                    "}";
+            final Job job = JsonJobMapper.toJob(json);
+        });
+
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void missingStepId() throws Exception {
-        String json = "{\n" +
-                "  \"job\": {\n" +
-                "    \"id\": \"simple\",\n" +
-                "    \"step\": {\n" +
-                "      \"chunk\": {\n" +
-                "        \"reader\": { \"-ref\": \"arrayItemReader\" },\n" +
-                "        \"writer\": { \"-ref\": \"mockItemWriter\" }\n" +
-                "      }\n" +
-                "    }\n" +
-                "  }\n" +
-                "}";
-        final Job job = JsonJobMapper.toJob(json);
+        assertThrows(IllegalStateException.class, () -> {
+            String json = "{\n" +
+                    "  \"job\": {\n" +
+                    "    \"id\": \"simple\",\n" +
+                    "    \"step\": {\n" +
+                    "      \"chunk\": {\n" +
+                    "        \"reader\": { \"-ref\": \"arrayItemReader\" },\n" +
+                    "        \"writer\": { \"-ref\": \"mockItemWriter\" }\n" +
+                    "      }\n" +
+                    "    }\n" +
+                    "  }\n" +
+                    "}";
+            final Job job = JsonJobMapper.toJob(json);
+        });
+
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void missingListenerRef() throws Exception {
-        String json = "{\n" +
-                "  \"job\": {\n" +
-                "    \"id\": \"job1\",\n" +
-                "    \"listeners\": {\n" +
-                "      \"listener\": { \"xxx\": \"xxx\" }\n" +
-                "    },\n" +
-                "    \"step\": {\n" +
-                "      \"id\": \"step1\",\n" +
-                "      \"batchlet\": { \"ref\": \"batchlet1\" }\n" +
-                "    }\n" +
-                "  }\n" +
-                "}";
-        final Job job = JsonJobMapper.toJob(json);
+        assertThrows(IllegalStateException.class, () -> {
+            String json = "{\n" +
+                    "  \"job\": {\n" +
+                    "    \"id\": \"job1\",\n" +
+                    "    \"listeners\": {\n" +
+                    "      \"listener\": { \"xxx\": \"xxx\" }\n" +
+                    "    },\n" +
+                    "    \"step\": {\n" +
+                    "      \"id\": \"step1\",\n" +
+                    "      \"batchlet\": { \"ref\": \"batchlet1\" }\n" +
+                    "    }\n" +
+                    "  }\n" +
+                    "}";
+            final Job job = JsonJobMapper.toJob(json);
+        });
+
     }
 
     /**
@@ -102,45 +111,45 @@ public final class JsonJobMapperTest {
     public void simpleChunkStep() throws Exception {
         String json =
                 "{\n" +
-                "  \"job\": {\n" +
-                "    \"id\": \"simple\",\n" +
-                "    \"step\": {\n" +
-                "      \"id\": \"simple.step1\",\n" +
-                "      \"chunk\": {\n" +
-                "        \"reader\": {\n" +
-                "          \"ref\": \"arrayItemReader\",\n" +
-                "          \"properties\": {\n" +
-                "            \"property\": \n" +
-                "              {\n" +
-                "                \"name\": \"RN\",\n" +
-                "                \"value\": \"RV\"\n" +
-                "              }\n" +
-                "          }\n" +
-                "        },\n" +
-                "        \"processor\": {\n" +
-                "          \"ref\": \"processor1\",\n" +
-                "          \"properties\": {\n" +
-                "            \"property\": \n" +
-                "              {\n" +
-                "                \"name\": \"PN\",\n" +
-                "                \"value\": \"PV\"\n" +
-                "              }\n" +
-                "          }\n" +
-                "        },\n" +
-                "        \"writer\": {\n" +
-                "          \"ref\": \"mockItemWriter\",\n" +
-                "          \"properties\": {\n" +
-                "            \"property\": \n" +
-                "              {\n" +
-                "                \"name\": \"WN\",\n" +
-                "                \"value\": \"WV\"\n" +
-                "              }\n" +
-                "          }\n" +
-                "        }\n" +
-                "      }\n" +
-                "    }\n" +
-                "  }\n" +
-                "}";
+                        "  \"job\": {\n" +
+                        "    \"id\": \"simple\",\n" +
+                        "    \"step\": {\n" +
+                        "      \"id\": \"simple.step1\",\n" +
+                        "      \"chunk\": {\n" +
+                        "        \"reader\": {\n" +
+                        "           \"ref\": \"arrayItemReader\",\n" +
+                        "          \"properties\": {\n" +
+                        "            \"property\": \n" +
+                        "              {\n" +
+                        "                \"name\": \"RN\",\n" +
+                        "                \"value\": \"RV\"\n" +
+                        "              }\n" +
+                        "          }\n" +
+                        "        },\n" +
+                        "        \"processor\": {\n" +
+                        "          \"ref\": \"processor1\",\n" +
+                        "          \"properties\": {\n" +
+                        "            \"property\": \n" +
+                        "              {\n" +
+                        "                \"name\": \"PN\",\n" +
+                        "                \"value\": \"PV\"\n" +
+                        "              }\n" +
+                        "          }\n" +
+                        "        },\n" +
+                        "        \"writer\": {\n" +
+                        "          \"ref\": \"mockItemWriter\",\n" +
+                        "          \"properties\": {\n" +
+                        "            \"property\": \n" +
+                        "              {\n" +
+                        "                \"name\": \"WN\",\n" +
+                        "                \"value\": \"WV\"\n" +
+                        "              }\n" +
+                        "          }\n" +
+                        "        }\n" +
+                        "      }\n" +
+                        "    }\n" +
+                        "  }\n" +
+                        "}";
         Job job = JsonJobMapper.toJob(json);
         assertEquals("simple", job.getId());
         assertEquals(true, job.getRestartableBoolean());
@@ -387,6 +396,7 @@ public final class JsonJobMapperTest {
 
     /**
      * Verifies partition mapper
+     *
      * @throws Exception
      */
     @Test
@@ -535,7 +545,7 @@ public final class JsonJobMapperTest {
     /**
      * Verifies a flow that contains 2 steps and transition elements:
      * end, fail, stop and next, and each of the appear once.
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -1435,7 +1445,7 @@ public final class JsonJobMapperTest {
                 assertEquals("stop1", transition.getOn());
                 assertEquals("x", ((Transition.Stop) transition).getExitStatus());
                 assertEquals("step1", ((Transition.Stop) transition).getRestart());
-            } else if(transition instanceof Transition.Next){
+            } else if (transition instanceof Transition.Next) {
                 nextCount++;
                 assertEquals("next1", transition.getOn());
                 assertEquals("step1", ((Transition.Next) transition).getTo());
