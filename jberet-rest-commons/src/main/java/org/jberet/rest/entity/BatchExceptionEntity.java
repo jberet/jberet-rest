@@ -10,15 +10,19 @@
 
 package org.jberet.rest.entity;
 
+import java.io.PrintWriter;
 import java.io.Serializable;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+
 import jakarta.batch.operations.BatchRuntimeException;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
-
-import com.google.common.base.Throwables;
 
 /**
  * Represents a batch exception, {@code BatchRuntimeException}, which includes
@@ -44,7 +48,7 @@ public final class BatchExceptionEntity implements Serializable {
     public BatchExceptionEntity(final BatchRuntimeException ex) {
         type = ex.getClass();
         message = ex.getMessage();
-        stackTrace = Throwables.getStackTraceAsString(ex);
+        stackTrace = toString(ex);
     }
 
     public Class<? extends BatchRuntimeException> getType() {
@@ -57,5 +61,33 @@ public final class BatchExceptionEntity implements Serializable {
 
     public String getStackTrace() {
         return stackTrace;
+    }
+
+    private static String toString(Throwable origin) {
+        try (StringWriter writer = new StringWriter()) {
+            origin.printStackTrace(new PrintWriter(writer));
+            return writer.toString();
+        } catch (Throwable e) {
+            return origin.toString();
+        }
+    }
+
+    private static Throwable getRootCause(Throwable origin) {
+        final List<Throwable> list = getThrowableList(origin);
+        return list.isEmpty() ? null : list.get(list.size() - 1);
+    }
+
+    private static List<Throwable> getThrowableList(Throwable throwable) {
+        final List<Throwable> list = new ArrayList<>();
+        while (throwable != null) {
+            if (!list.contains(throwable)) {
+                list.add(throwable);
+                throwable = throwable.getCause();
+            } else {
+                // loop detected
+                throw new IllegalArgumentException("Loop chain detected: ", throwable);
+            }
+        }
+        return list;
     }
 }
