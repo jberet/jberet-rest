@@ -25,6 +25,27 @@
 
     <packaging>pom</packaging>
 
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <configuration>
+                            <skipSource>false</skipSource>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <properties>
         <version.org.jberet>3.0.0.Final</version.org.jberet>
         <insecure.repositories>WARN</insecure.repositories>
