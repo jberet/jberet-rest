@@ -25,7 +25,7 @@
 
     <properties>
 <!--        <version.miredot>2.4.4-Java11</version.miredot>-->
-        <version.org.jberet.jberet-schedule>2.0.0.Final</version.org.jberet.jberet-schedule>
+        <version.org.jberet.jberet-schedule>3.0.0.Final</version.org.jberet.jberet-schedule>
     </properties>
 
     <dependencies>
