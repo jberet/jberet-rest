@@ -16,7 +16,7 @@
     <parent>
         <artifactId>jberet-parent</artifactId>
         <groupId>org.jberet</groupId>
-        <version>3.0.0.Final</version>
+        <version>3.1.0.Final</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
